@@ -52,12 +52,13 @@
     // myImage.setAttribute("src", "static/coffee_beans.jpg");
     $('#coffee_image').attr('src', 'static/coffee_beans.jpg');
 
-    myImage.addEventListener("click", makeCoffee);
-    // $('#coffee_image').
+    // myImage.addEventListener("click", makeCoffee);
+    $('#coffee_image').on('click', makeCoffee);
 
 
     function makeCoffee() {
-         myImage.src = "static/coffee_machine.jpg";
+        $('#coffee_image').attr('src', 'static/coffee_machine.jpg');
+         // myImage.src = "static/coffee_machine.jpg";
 
          setTimeout(function() {
              myImage.setAttribute("src", "static/coffee_mug.jpg");
