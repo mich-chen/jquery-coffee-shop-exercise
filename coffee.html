@@ -22,13 +22,13 @@
         <table class="table">
             <tr>
                 <td class="col-md-2">
-                    <button class="btn-btn-default" id="espresso" price=3.25>Espresso</button>
+                    <button class="btn-btn-default" id="espresso" value=3.25>Espresso</button>
                 </td>
                 <td class="col-md-2">
-                    <button class="btn-btn-default" id="latte" price=4.15>Latte</button>
+                    <button class="btn-btn-default" id="latte" value=4.15>Latte</button>
                 </td>
                 <td class="col-md-2">
-                    <button class="btn-btn-default" id="hot-chocolate" price=2.50>Hot Chocolate</button>
+                    <button class="btn-btn-default" id="hot-chocolate" value=2.50>Hot Chocolate</button>
                 </td>
             </tr>
             <tr>
@@ -71,25 +71,25 @@
         resetCart();
     });
 
-    // for (const coffee of $('.btn-btn-default')) {
-    //     $('coffee.i')
-
-    // }
-
-    $('#espresso').on('click', () => {
-        updateTotal($('#espresso').attr('price'));
-        addItemToCart($('#espresso').attr('id'));
+    $('button.btn-btn-default').on('click', (evt) => {
+      updateTotal(evt.target.value);
+      addItemToCart(evt.target.id);
     });
 
-    $('#latte').on('click', () => {
-        updateTotal($('#latte').attr('price'));
-        addItemToCart($('#latte').attr('id'));
-    });
+    // $('#espresso').on('click', () => {
+    //     updateTotal($('#espresso').attr('price'));
+    //     addItemToCart($('#espresso').attr('id'));
+    // });
 
-    $('#hot-chocolate').on('click', () => {
-        updateTotal($('#hot-chocolate').attr('price'));
-        addItemToCart($('#hot-chocolate').attr('id'));
-    });
+    // $('#latte').on('click', () => {
+    //     updateTotal($('#latte').attr('price'));
+    //     addItemToCart($('#latte').attr('id'));
+    // });
+
+    // $('#hot-chocolate').on('click', () => {
+    //     updateTotal($('#hot-chocolate').attr('price'));
+    //     addItemToCart($('#hot-chocolate').attr('id'));
+    // });
 
 
     function updateTotal(price) {
@@ -114,6 +114,8 @@
       $('#revenue').html('0.00');
       $('#cart-items').empty();
     };
+
+
 
     function makeCoffee() {
 
