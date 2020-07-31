@@ -19,18 +19,16 @@
 
         <img id="coffee_image" src="LOLWUT" alt="make this image work" height="300" width="200">
 
-        <h3 id="message">Click The Image To Order Coffee</h3>
-
         <table class="table">
             <tr>
                 <td class="col-md-2">
-                    <button class="btn btn-default" id="espresso">Espresso</button>
+                    <button class="btn-btn-default" id="espresso" price=3.25>Espresso</button>
                 </td>
                 <td class="col-md-2">
-                    <button class="btn btn-default" id="latte">Latte</button>
+                    <button class="btn-btn-default" id="latte" price=4.15>Latte</button>
                 </td>
                 <td class="col-md-2">
-                    <button class="btn btn-default" id="hot-chocolate">Hot Chocolate</button>
+                    <button class="btn-btn-default" id="hot-chocolate" price=2.50>Hot Chocolate</button>
                 </td>
             </tr>
             <tr>
@@ -40,32 +38,102 @@
             </tr>
         </table>
 
-        <h4>Total: <span id="revenue"><!-- Revenue Message will show up here --></span></h4>
+        <section id="your-cart">
+          <h2>Your Cart</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th><h4>Item</h4></th>
+              </tr>
+            </thead>
+
+            <tbody id="cart-items"></tbody>
+          </table>
+
+          <h4>Total: <span id="revenue">0.00</span></h4>
+
+        <button class="purchase-coffee-button" id="purchase-coffee">Click here to complete your order! :)</button>
     </div>
 </div>
 
 <script>
 
     // var myImage = document.getElementById("coffee_image");
-    var myRevenueMessage = document.getElementById("revenue");
+    // var myRevenueMessage = document.getElementById("revenue");
 
     // myImage.setAttribute("src", "static/coffee_beans.jpg");
     $('#coffee_image').attr('src', 'static/coffee_beans.jpg');
 
     // myImage.addEventListener("click", makeCoffee);
-    $('#coffee_image').on('click', makeCoffee);
+    $('#purchase-coffee').on('click', () => {
+        makeCoffee();
+        resetCart();
+    });
 
+    // for (const coffee of $('.btn-btn-default')) {
+    //     $('coffee.i')
+
+    // }
+
+    $('#espresso').on('click', () => {
+        updateTotal($('#espresso').attr('price'));
+        addItemToCart($('#espresso').attr('id'));
+    });
+
+    $('#latte').on('click', () => {
+        updateTotal($('#latte').attr('price'));
+        addItemToCart($('#latte').attr('id'));
+    });
+
+    $('#hot-chocolate').on('click', () => {
+        updateTotal($('#hot-chocolate').attr('price'));
+        addItemToCart($('#hot-chocolate').attr('id'));
+    });
+
+
+    function updateTotal(price) {
+      const cartTotal = $('#revenue');
+
+      let total = Number(cartTotal.html());
+      total += Number(price);
+
+      cartTotal.html(total.toFixed(2));
+        // $('#revenue').html(`${price}`);
+    };
+
+    const addItemToCart = (itemName) => {
+      $('#cart-items').append(`
+        <tr>
+          <td>${itemName}</td>
+        </tr>
+      `);
+    };
+
+    const resetCart = () => {
+      $('#revenue').html('0.00');
+      $('#cart-items').empty();
+    };
 
     function makeCoffee() {
+
         $('#coffee_image').attr('src', 'static/coffee_machine.jpg');
+        
+
          // myImage.src = "static/coffee_machine.jpg";
 
-         setTimeout(function() {
-             myImage.setAttribute("src", "static/coffee_mug.jpg");
-         }, 1500);
+         alert(`Your coffee is brewing!`);
 
          setTimeout(function() {
-             myImage.setAttribute("src", "static/coffee_beans.jpg");
+            alert(`Your coffee is ready! :)`);
+            $('#coffee_image').attr('src', 'static/coffee_mug.jpg');
+         }, 1500);
+            
+
+
+         setTimeout(function() {
+             $('#coffee_image').attr('src', 'static/coffee_beans.jpg');
+             alert(`Need another cup? hehehe`);
          }, 4000);
     }
 
