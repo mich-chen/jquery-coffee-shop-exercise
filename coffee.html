@@ -63,7 +63,9 @@
     // var myRevenueMessage = document.getElementById("revenue");
 
     // myImage.setAttribute("src", "static/coffee_beans.jpg");
+    
     $('#coffee_image').attr('src', 'static/coffee_beans.jpg');
+   
 
     // myImage.addEventListener("click", makeCoffee);
     $('#purchase-coffee').on('click', () => {
@@ -71,6 +73,9 @@
         resetCart();
     });
 
+    // use evt.target to avoid repeitition select class of buttons
+    // setting event for each target button that is clicked
+    // pass the value (price) and id (name) into functions
     $('button.btn-btn-default').on('click', (evt) => {
       updateTotal(evt.target.value);
       addItemToCart(evt.target.id);
@@ -119,25 +124,36 @@
 
     function makeCoffee() {
 
-        $('#coffee_image').attr('src', 'static/coffee_machine.jpg');
+
+      alert(`Your coffee is brewing!`)
+      $('#coffee_image').fadeOut("slow");
+      $('#coffee_image').attr('src', 'static/coffee_machine.jpg');
+      $('#coffee_image').fadeIn("slow");
+      // setTimeout(function() {
         
-
-         // myImage.src = "static/coffee_machine.jpg";
-
-         alert(`Your coffee is brewing!`);
-
-         setTimeout(function() {
-            alert(`Your coffee is ready! :)`);
-            $('#coffee_image').attr('src', 'static/coffee_mug.jpg');
-         }, 1500);
-            
+      //   // 
+      // }, 2000);
 
 
-         setTimeout(function() {
-             $('#coffee_image').attr('src', 'static/coffee_beans.jpg');
-             alert(`Need another cup? hehehe`);
-         }, 4000);
-    }
+      // myImage.src = "static/coffee_machine.jpg";
+
+      setTimeout(function() {
+        $('#coffee_image').fadeOut("slow");
+        $('#coffee_image').attr('src', 'static/coffee_mug.jpg');
+        $('#coffee_image').fadeIn("slow");
+        alert(`Your coffee is ready! :)`);
+      }, 3000);
+
+
+
+
+      setTimeout(function() {
+        $('#coffee_image').fadeOut("slow");
+        $('#coffee_image').attr('src', 'static/coffee_beans.jpg');
+        $('#coffee_image').fadeIn("slow");
+         alert(`Need another cup? hehehe`);
+      }, 7000);
+      }
 
 </script>
 
